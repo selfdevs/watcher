@@ -11,4 +11,4 @@ Tech Details
 - MongoDB for storing the data
 
 Contributors
-- [Arth](https://github.com/ArthThapa)
+- [Arth](https://github.com/probablyArth)
