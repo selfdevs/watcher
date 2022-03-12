@@ -14,10 +14,6 @@ async def on_ready():
   print("self.dev Watcher is ready")
   print("====================")
 
-for filename in listdir('./cogs'):
-    if filename.endswith('.py'):
-        bot.load_extension(f'cogs.{filename[:-3]}')
-
 for filename in listdir('./events'):
     if filename.endswith('.py'):
         bot.load_extension(f'events.{filename[:-3]}')
