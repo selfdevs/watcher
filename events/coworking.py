@@ -9,7 +9,7 @@ fallout_channel_id = int(environ['FALLOUT_CHANNEL_ID'])
 class coworking(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
-    print('init')
+    print('Co-working events loaded!')
     
   @commands.Cog.listener()
   async def on_voice_state_update(self, member, before, after):
