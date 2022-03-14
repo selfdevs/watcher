@@ -9,7 +9,7 @@ fallout_channel_id = int(environ['FALLOUT_CHANNEL_ID'])
 class coworking(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
-    print('Co-working events loaded!')
+    print("Co-working cog loaded!")
     
   @commands.Cog.listener()
   async def on_voice_state_update(self, member, before, after):
@@ -22,9 +22,12 @@ class coworking(commands.Cog):
 
       if after_channel and after_channel.id in channel_ids:
         await member.add_roles(role, reason='Joined Co-working vc')
+        print(f"{member.name} joined a co-working channel.")
 
       elif before_channel and before_channel.id in channel_ids:
         await member.remove_roles(role, reason='Left Co-working vc')
+        print(f"{member.name} joined a co-working channel.")
+
     except AttributeError:
       fallout_channel = member.guild.get_channel(fallout_channel_id)
       await fallout_channel.send(f"Coworker role with id `{role_id}` doesn't exist! Please update env variables in production :pray:")
