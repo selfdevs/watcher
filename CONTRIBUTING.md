@@ -26,13 +26,13 @@ on this project on their free time**, so be patient and respectful.
 > familiar with it, this shouldn't be new.
 
 We have two main branches on the repo, one is call `vx` and contains
-the production ready code, and the other one is `development`, where we have
+the production ready code, and the other one is `dev`, where we have
 the newly merged features. If you plan to work on a new feature or a bug fix,
-you need to create a new branch **starting from development**, and call it after
+you need to create a new branch **starting from dev**, and call it after
 the subject of your work, then commit on this branch. When your work is ready
 to be reviewed, feel free to open a pull request.
 
-**Not a single commit should be pushed directly to `main` or `develop`.**
+**Not a single commit should be pushed directly to `main` or `dev`.**
 
 ## Pull requests
 
