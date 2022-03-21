@@ -12,9 +12,11 @@ Tech Details
 - Python for scripting
 - MongoDB for storing the data
 
-## Contributing
+## Initializing
 
-- Fork the repo and activate your virtual env
+For contributing refer [CONTRIBUTING](https://github.com/selfdevs/watcher/blob/v1/CONTRIBUTING.md)
+
+- activate your virtual env
 - install the dependencies
 - make .env file and insert required variables
 
