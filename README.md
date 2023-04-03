@@ -2,9 +2,15 @@
 
 Discord bot for self.dev community
 
+## Current features
+
+- add/remove co-working role when member joins/leaves a coworking VC.
+- warn and kick the user from select voice channels if they don't turn on their cams.
+
 ## Running the project locally
 
 ### Project setup
+
 ```
 # install dependencies
 pip install -r requirements.txt
@@ -15,18 +21,21 @@ cp .env.example .env
 # run
 python3 bot.py
 ```
+
 Update the variables in `.env` manually
 
 ### Discord developer portal
 
 #### Intents
-![SERVER MEMBERS INTENT, MESSAGE CONTENT INTENT](./.github/assets/intents.png)
-#### Permissions
-  ![Manage Roles, Read Message/View Channels, Send Messages, Send Messages In Threads, Move Members](./.github/assets/permissions.png)
-  
 
+![SERVER MEMBERS INTENT, MESSAGE CONTENT INTENT](./.github/assets/intents.png)
+
+#### Permissions
+
+![Manage Roles, Read Message/View Channels, Send Messages, Send Messages In Threads, Move Members](./.github/assets/permissions.png)
 
 ## Project structure
+
 ```
 .
 |- events
@@ -37,6 +46,7 @@ Update the variables in `.env` manually
 |- bot.py            # main entrypoint
 
 ```
+
 For contributing refer [CONTRIBUTING](https://github.com/selfdevs/watcher/blob/v1/CONTRIBUTING.md)
 
 Contributors

@@ -1,10 +1,10 @@
 from os import listdir
 from discord.ext import commands
 from discord import Intents
-from utils import sendFalloutMessage
+from helpers.utils import sendFalloutMessage
 import asyncio
 
-from env import (
+from helpers.env import (
     coworking_channel_ids,
     coworking_role_id,
     cam_only_channel_ids,

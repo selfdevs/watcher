@@ -1,5 +1,5 @@
 from discord.ext import commands
-from env import activity_channel_id, fallout_channel_id
+from helpers.env import activity_channel_id, fallout_channel_id
 
 
 async def sendActivityMessage(bot: commands.Bot, message: str):

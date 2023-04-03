@@ -2,8 +2,12 @@ from discord.ext import commands
 from discord import Member, VoiceState
 from discord.channel import VocalGuildChannel
 from asyncio import sleep
-from utils import sendActivityMessage, sendFalloutMessage
-from env import cam_only_channel_ids, cams_only_warn_period, cams_only_kick_period
+from helpers.utils import sendActivityMessage, sendFalloutMessage
+from helpers.env import (
+    cam_only_channel_ids,
+    cams_only_warn_period,
+    cams_only_kick_period,
+)
 
 member_register: dict[int, Member] = {}
 

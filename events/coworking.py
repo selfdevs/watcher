@@ -1,7 +1,7 @@
 from discord.ext import commands
 from discord import Member, VoiceState
-from env import coworking_role_id, coworking_channel_ids
-from utils import sendActivityMessage, sendFalloutMessage
+from helpers.env import coworking_role_id, coworking_channel_ids
+from helpers.utils import sendActivityMessage, sendFalloutMessage
 
 
 class coworking(commands.Cog):
