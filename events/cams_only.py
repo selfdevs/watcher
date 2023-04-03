@@ -24,7 +24,7 @@ async def start_warn_procedure(
         and not member_register[member.id].voice.self_video
     ):
         await channel.send(
-            f"{member.mention}, You are warned! This is a cam-only channel, turn on your cam in 60 seconds or you'll be kicked out of VC"
+            f"{member.mention}, You've been warned! This is a cam-only channel, turn on your cam in 60 seconds or you'll be kicked out of VC"
         )
         await sleep(cams_only_kick_period)
         if (
