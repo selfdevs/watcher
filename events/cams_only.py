@@ -3,7 +3,7 @@ from discord import Member, VoiceState
 from discord.channel import VocalGuildChannel
 from asyncio import sleep
 from utils import sendActivityMessage, sendFalloutMessage
-from env import cam_only_channel_ids
+from env import cam_only_channel_ids, cams_only_warn_period, cams_only_kick_period
 
 member_register: dict[int, Member] = {}
 
@@ -15,7 +15,7 @@ async def cam_only_event(bot: commands.Bot, channel: VocalGuildChannel, member: 
 async def start_warn_procedure(
     bot: commands.Bot, channel: VocalGuildChannel, member: Member
 ):
-    await sleep(5)
+    await sleep(cams_only_warn_period)
     await sendActivityMessage(
         bot, f"Started cam-only warn procedure on: {member.name}#{member.discriminator}"
     )
@@ -26,7 +26,7 @@ async def start_warn_procedure(
         await channel.send(
             f"{member.mention}, You are warned! This is a cam-only channel, turn on your cam in 60 seconds or you'll be kicked out of VC"
         )
-        await sleep(5)
+        await sleep(cams_only_kick_period)
         if (
             member_register[member.id].voice
             and not member_register[member.id].voice.self_video
