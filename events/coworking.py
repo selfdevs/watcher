@@ -1,36 +1,54 @@
-from os import environ
 from discord.ext import commands
-from json import loads
+from discord import Member, VoiceState
+from env import coworking_role_id, coworking_channel_ids
+from utils import sendActivityMessage, sendFalloutMessage
 
-role_id = int(environ['COWORKER_ROLE_ID'])
-channel_ids = loads(environ['COWORKING_CHANNELS_IDS'])
-fallout_channel_id = int(environ['FALLOUT_CHANNEL_ID'])
 
 class coworking(commands.Cog):
-  def __init__(self, bot):
-    self.bot = bot
-    print("Co-working cog loaded!")
-    
-  @commands.Cog.listener()
-  async def on_voice_state_update(self, member, before, after):
-    
-    try:
-      guild = self.bot.get_guild(member.guild.id)
-      role = guild.get_role(role_id)
-      before_channel = before.channel
-      after_channel = after.channel
+    def __init__(self, bot: commands.Bot):
+        self.bot = bot
+        print("Co-working cog loaded!")
 
-      if after_channel and after_channel.id in channel_ids:
-        await member.add_roles(role, reason='Joined Co-working vc')
-        print(f"{member.name} joined a co-working channel.")
+    @commands.Cog.listener()
+    async def on_voice_state_update(
+        self,
+        member: Member,
+        before: VoiceState,
+        after: VoiceState,
+    ):
+        try:
+            guild = self.bot.get_guild(member.guild.id)
+            role = guild.get_role(coworking_role_id)
+            before_channel = before.channel
+            after_channel = after.channel
 
-      elif before_channel and before_channel.id in channel_ids:
-        await member.remove_roles(role, reason='Left Co-working vc')
-        print(f"{member.name} joined a co-working channel.")
+            if (
+                after_channel
+                and after_channel.id in coworking_channel_ids
+                and (
+                    not before_channel
+                    or (
+                        before_channel
+                        and before_channel.id not in coworking_channel_ids
+                    )
+                )
+            ):
+                await member.add_roles(role, reason="Joined Co-working vc")
+                await sendActivityMessage(
+                    self.bot,
+                    f"{member.name}#{member.discriminator} joined {after_channel.name}",
+                )
 
-    except AttributeError:
-      fallout_channel = member.guild.get_channel(fallout_channel_id)
-      await fallout_channel.send(f"Coworker role with id `{role_id}` doesn't exist! Please update env variables in production :pray:")
+            elif before_channel and before_channel.id in coworking_channel_ids:
+                await member.remove_roles(role, reason="Left Co-working vc")
+                await sendActivityMessage(
+                    self.bot,
+                    f"{member.name}#{member.discriminator} left {before_channel.name}",
+                )
 
-def setup(bot):
-  bot.add_cog(coworking(bot))
+        except Exception as e:
+            await sendFalloutMessage(self.bot, e)
+
+
+async def setup(bot):
+    await bot.add_cog(coworking(bot))

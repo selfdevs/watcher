@@ -2,38 +2,42 @@
 
 Discord bot for self.dev community
 
-## Main Idea
+## Running the project locally
 
-The main idea is to have a discord bot that solves all our co-working needs and provides some interesting data about the same, (long suggested very cool).
-So for now, having a pingable co-worker role and some interesting data would be nice.
-
-Tech Details
-
-- Python for scripting
-- MongoDB for storing the data
-
-## Initializing
-
-For contributing refer [CONTRIBUTING](https://github.com/selfdevs/watcher/blob/v1/CONTRIBUTING.md)
-
-- activate your virtual env
-- install the dependencies
-- make .env file and insert required variables
-
+### Project setup
 ```
+# install dependencies
 pip install -r requirements.txt
-touch .env
-```
 
-### Env Variables
+# make .env file from .env.example
+cp .env.example .env
+
+# run
+python3 bot.py
+```
+Update the variables in `.env` manually
+
+### Discord developer portal
+
+#### Intents
+![SERVER MEMBERS INTENT, MESSAGE CONTENT INTENT](./.github/assets/intents.png)
+#### Permissions
+  ![Manage Roles, Read Message/View Channels, Send Messages, Send Messages In Threads, Move Members](./.github/assets/permissions.png)
+  
+
+
+## Project structure
+```
+.
+|- events
+|    |- coworking.py # events related to coworking channels
+|    |- cams_only.py # events related to cams_only channels
+|- utils.py          # all the utility functions to keep it DRY.
+|- env.py            # single source of env variables
+|- bot.py            # main entrypoint
 
 ```
-MONGODB_URI=mongodb://localhost:27017/watcher
-DISCORD_TOKEN=discord token
-COWORKER_ROLE_ID=coworker role id
-COWORKING_CHANNELS_IDS=[coworking channel ids<int>]
-FALLOUT_CHANNEL_ID=fallout channel id to send production breaking errors
-```
+For contributing refer [CONTRIBUTING](https://github.com/selfdevs/watcher/blob/v1/CONTRIBUTING.md)
 
 Contributors
 
