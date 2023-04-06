@@ -14,6 +14,7 @@ from helpers.env import (
     activity_channel_id,
 )
 
+
 intents = Intents.default()
 intents.voice_states = True
 intents.message_content = True
@@ -56,6 +57,7 @@ async def on_ready():
         
         Alright bye now, time to watch :nazar_amulet:
         """,
+        "Initialized",
     )
 
 
