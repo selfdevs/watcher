@@ -7,6 +7,7 @@ from helpers.env import (
     cam_only_channel_ids,
     cams_only_warn_period,
     cams_only_kick_period,
+    cams_only_move_vc_id,
 )
 
 member_register: dict[int, Member] = {}
@@ -41,7 +42,7 @@ async def start_warn_procedure(
             and not member_register[member.id].voice.self_video
             and member_register[member.id].voice.channel.id in cam_only_channel_ids
         ):
-            await member.move_to(None)
+            await member.move_to(bot.get_channel(cams_only_move_vc_id))
             await channel.send(
                 f"kicked {member.mention} because they didn't turn on their cam.",
                 silent=True,
