@@ -1,0 +1,6 @@
+.github
+.git
+__pycache__
+venv
+.env
+log.jsonl

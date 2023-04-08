@@ -3,7 +3,7 @@ from helpers.env import activity_channel_id, fallout_channel_id
 from json import dumps
 from datetime import datetime
 
-log_file = open("log.jsonl", "a")
+log_file = open("./data/log.jsonl", "a+")
 
 
 async def sendActivityMessage(bot: commands.Bot, message: str):
