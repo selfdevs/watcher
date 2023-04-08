@@ -24,6 +24,18 @@ python3 bot.py
 
 Update the variables in `.env` manually
 
+### Running as docker container
+
+```sh
+docker run --env (ENV1="something"...Add env variables here manually) -v "absolute/path/to/where/you/want/to/store/logs:/app/data" probablyarth/selfdevs-watcher:1.0
+```
+
+or load env variables from a file
+
+```sh
+docker run --env-file "path to .env file" -v "absolute/path/to/where/you/want/to/store/logs:/app/data" probablyarth/selfdevs-watcher:1.0
+```
+
 ### Discord developer portal
 
 #### Intents
