@@ -12,14 +12,15 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix=">", help_command=None, intents=intents)
 
-
 def printVoiceChannels(channel_ids_list: list[int]):
     message = ""
     for i, channel_id in enumerate(channel_ids_list):
         channel = bot.get_channel(channel_id)
-        message += f"`{i+1}. {channel.name}`\n"
+        if channel is not None:  # Check if the channel is not None before accessing its name
+            message += f"`{i+1}. {channel.name}`\n"
+        else:
+            message += f"`{i+1}. Unknown Channel (ID: {channel_id})`\n"
     return message
-
 
 @bot.event
 async def on_ready():
@@ -41,7 +42,7 @@ async def on_ready():
         f"```Initializing watcher, make sure that the bot is put above the coworking role to avoid any issues ```"
         + "\n**Current watcher configuration**\n"
         + f"\n**Co-working VCs**\n{printVoiceChannels(env.coworking_channel_ids)}\n*Co-working role ID*\n{env.coworking_role_id}\n"
-        + f"\n**Cam-only VCs**\n{printVoiceChannels(env.cam_only_channel_ids)}\n- Warn period: {env.cams_only_warn_period} seconds\n- Kick period: {env.cams_only_kick_period} seconds\n"
+        + f"\n**Cam-only VCs**\n{printVoiceChannels(env.cam_only_channel_ids)}\n- Warn period: {env.cams_only_warn_period} | {env.cams_only_warn_period_nextlevel} (NEXT LEVEL) seconds\n- Kick period: {env.cams_only_kick_period} | {env.cams_only_kick_period_nextlevel} (NEXT LEVEL) seconds\n"
         + "\n- Move VC: "
         + (
             bot.get_channel(env.cams_only_move_vc_id)
@@ -63,3 +64,4 @@ async def loadCogs():
 asyncio.run(loadCogs())
 
 bot.run(env.discord_token)
+

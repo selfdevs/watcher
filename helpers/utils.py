@@ -2,9 +2,13 @@ from discord.ext import commands
 from helpers.env import activity_channel_id, fallout_channel_id
 from json import dumps
 from datetime import datetime
+import re
 
 log_file = open("./data/log.jsonl", "a+")
 
+
+def keep_letters_only(input_str):
+    return re.sub(r'[^a-zA-Z]', '', input_str)
 
 async def sendActivityMessage(bot: commands.Bot, message: str):
     activity_channel = bot.get_channel(activity_channel_id)
